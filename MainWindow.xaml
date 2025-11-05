@@ -1,0 +1,21 @@
+﻿<Window x:Class="Shoe41.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shoe41"
+        mc:Ignorable="d"
+        Title="ShoeShop Chirkov" Height="450" Width="800" MinWidth="800" MinHeight="450" Icon="/res/icon.ico" FontFamily="Comic Sans MS">
+    <Grid Background="#FFCC99">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Image Source="/res/logo.png" Grid.Row="0" HorizontalAlignment="Left"/>
+        <TextBlock Text="Магазин обуви" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold"/>
+        <Button Name="BtnBack" Content="Назад" Click="BtnBack_Click" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+        <Frame Name="MainFrame" Grid.Row="1" Background="White" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden" FontFamily="Comic Sans MS"/>
+    </Grid>
+</Window>
