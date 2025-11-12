@@ -9,7 +9,70 @@
       Title="ProductPage" FontFamily="Comic Sans MS">
 
     <Grid>
-        <TextBlock Text="blablab;ajfjladsjf" FontSize="30"/>
-        <Button Name="AddButton" Content="добавить услугу" Click="AddButton_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="SearchResultTB" Text="" Grid.Column="0" Grid.Row="0" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+        <TextBlock Text="поиск по именованию" Grid.Column="1" Grid.Row="0" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Name="SearchTB" Width="120" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" TextChanged="SearchTB_TextChanged"/>
+
+        <RadioButton Name="AscRB" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="AscRB_Checked"/>
+        <TextBlock Text="по возрастанию стоимости" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <RadioButton Name="DescRB" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="DescRB_Checked"/>
+        <TextBlock Text="по убыванию стоимости" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+
+        <TextBlock Text="фильтрация по скидке" Grid.Column="4" Grid.Row="0" FontSize="14"/>
+        <ComboBox Name="DiscountCB" Width="120" Height="20" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="DiscountCB_SelectionChanged"/>
+
+        <ListView Name="ProductListView" Grid.ColumnSpan="5" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="650"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.RowSpan="4" HorizontalAlignment="Left">
+                            <Image.Source>
+                                <Binding Path="ImagePath">
+                                <Binding.TargetNullValue>
+                                    <ImageSource>
+                                        res/picture.png
+                                    </ImageSource>
+                                </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ProductName}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ProductDescription}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ProductManufacturer}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding ProductCost, StringFormat={}{0:F0} руб.}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="Скидка" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding ProductDiscountAmount, StringFormat={}{0} %}" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

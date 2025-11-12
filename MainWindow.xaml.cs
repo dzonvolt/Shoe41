@@ -29,7 +29,7 @@ namespace Shoe41
         {
             InitializeComponent();
             Manager.MainFrame = MainFrame;
-            MainFrame.Navigate(new StartPage());
+            MainFrame.Navigate(new ProductPage());
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
