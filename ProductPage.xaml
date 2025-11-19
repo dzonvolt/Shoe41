@@ -17,25 +17,28 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="SearchResultTB" Text="" Grid.Column="0" Grid.Row="0" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Name="UserInfoTB" FontSize="15" Grid.ColumnSpan="2"/>
 
-        <TextBlock Text="поиск по именованию" Grid.Column="1" Grid.Row="0" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox Name="SearchTB" Width="120" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" TextChanged="SearchTB_TextChanged"/>
+        <TextBlock Name="SearchResultTB" Text="" Grid.Column="0" Grid.Row="1" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-        <RadioButton Name="AscRB" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="AscRB_Checked"/>
-        <TextBlock Text="по возрастанию стоимости" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
-        <RadioButton Name="DescRB" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="DescRB_Checked"/>
-        <TextBlock Text="по убыванию стоимости" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <TextBlock Text="поиск по именованию" Grid.Column="1" Grid.Row="1" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Name="SearchTB" Width="120" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" TextChanged="SearchTB_TextChanged"/>
 
-        <TextBlock Text="фильтрация по скидке" Grid.Column="4" Grid.Row="0" FontSize="14"/>
-        <ComboBox Name="DiscountCB" Width="120" Height="20" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="DiscountCB_SelectionChanged"/>
+        <RadioButton Name="AscRB" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="AscRB_Checked"/>
+        <TextBlock Text="по возрастанию стоимости" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <RadioButton Name="DescRB" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Checked="DescRB_Checked"/>
+        <TextBlock Text="по убыванию стоимости" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
 
-        <ListView Name="ProductListView" Grid.ColumnSpan="5" Grid.Row="2">
+        <TextBlock Text="фильтрация по скидке" Grid.Column="4" Grid.Row="1" FontSize="14"/>
+        <ComboBox Name="DiscountCB" Width="120" Height="20" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="DiscountCB_SelectionChanged"/>
+
+        <ListView Name="ProductListView" Grid.ColumnSpan="5" Grid.Row="3">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

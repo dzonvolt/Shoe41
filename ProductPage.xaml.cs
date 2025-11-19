@@ -24,13 +24,15 @@ namespace Shoe41
 
         List<string> discount_filters = new List<string>{ "0-9%", "10-14%", "15-100%"};
 
-        public ProductPage()
+        public ProductPage(User user)
         {
             InitializeComponent();
             CurrentProducts = Chirkov41Entities.GetContext().Product.ToList();
             ProductListView.ItemsSource = CurrentProducts;
             DiscountCB.ItemsSource = discount_filters;
-            update_products();
+            if (user != null) UserInfoTB.Text = "Вошлши как " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic + "\n" + "Роль: " + user.Role.RoleName;
+            else UserInfoTB.Text = "Вошли как гость";
+                update_products();
         }
 
         public void update_products() {

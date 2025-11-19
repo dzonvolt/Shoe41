@@ -27,7 +27,7 @@ namespace Shoe41
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new ProductPage());
+            //Manager.MainFrame.Navigate(new ProductPage());
         }
     }
 }
