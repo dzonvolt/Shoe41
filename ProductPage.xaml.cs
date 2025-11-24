@@ -32,10 +32,10 @@ namespace Shoe41
             DiscountCB.ItemsSource = discount_filters;
             if (user != null) UserInfoTB.Text = "Вошлши как " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic + "\n" + "Роль: " + user.Role.RoleName;
             else UserInfoTB.Text = "Вошли как гость";
-                update_products();
+                UpdateProducts();
         }
 
-        public void update_products() {
+        public void UpdateProducts() {
 
             var products = Chirkov41Entities.GetContext().Product.ToList();
             var raw_products_count = products.Count;
@@ -68,22 +68,22 @@ namespace Shoe41
 
         private void DiscountCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            update_products();
+            UpdateProducts();
         }
 
         private void SearchTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            update_products();
+            UpdateProducts();
         }
 
         private void AscRB_Checked(object sender, RoutedEventArgs e)
         {
-            update_products();
+            UpdateProducts();
         }
 
         private void DescRB_Checked(object sender, RoutedEventArgs e)
         {
-            update_products();
+            UpdateProducts();
         }
     }
 }

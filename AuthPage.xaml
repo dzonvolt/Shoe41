@@ -26,12 +26,12 @@
         <TextBox Name="LoginTB" Text="loginDEonq2018" Grid.Column="1" Grid.Row="0" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5"/>
         <TextBox Name="PasswordTB" Text="mKIIRQ" Grid.Column="1" Grid.Row="1" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
 
-        <TextBox Visibility="Hidden" Name="CaptchaTB" Text="dgsh" Grid.Row="2" Grid.Column="0" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <TextBox Visibility="Hidden" Name="CaptchaTB" Grid.Row="2" Grid.Column="0" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <StackPanel Name="CaptchaSP" Visibility="Hidden" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-            <TextBlock Name="captchaOneWord" FontSize="22" Margin="30,0,0,0"/>
-            <TextBlock Name="captchaTwoWord" FontSize="22" TextDecorations="Strikethrough" Margin="0,5,0,0"/>
-            <TextBlock Name="captchaThreeWord" FontSize="22"  TextDecorations="Strikethrough"/>
-            <TextBlock Name="captchaFourWord" FontSize="22"  TextDecorations="Strikethrough" Margin="0,10,0,0"/>
+            <TextBlock Name="captchaOneWord" FontSize="22" Margin="30,0,0,0" Foreground="Red"/>
+            <TextBlock Name="captchaTwoWord" FontSize="22" TextDecorations="Strikethrough" Margin="0,5,0,0" Foreground="Green"/>
+            <TextBlock Name="captchaThreeWord" FontSize="22"  TextDecorations="Strikethrough" Foreground="Blue"/>
+            <TextBlock Name="captchaFourWord" FontSize="22"  TextDecorations="Strikethrough" Margin="0,10,0,0" Foreground="Violet"/>
         </StackPanel>
 
         <Button Content="Войти как гость" Name="LoginGuestButton" Grid.Column="0" Grid.Row="2" Width="200" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LoginGuestButton_Click"/>

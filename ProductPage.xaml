@@ -22,8 +22,8 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <TextBlock Name="UserInfoTB" FontSize="15" Grid.ColumnSpan="2"/>
+        
+        <TextBlock Name="UserInfoTB" FontSize="15" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
 
         <TextBlock Name="SearchResultTB" Text="" Grid.Column="0" Grid.Row="1" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 

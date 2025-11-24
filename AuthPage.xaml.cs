@@ -34,15 +34,11 @@ namespace Shoe41
 
         bool NeedCaptcha = false;
         DateTime LastLoginTry = DateTime.MinValue;
+        static Random random = new Random();
 
         static string GetRandomLetter()
         {
-            Random random = new Random();
-            int uppercaseIndex = random.Next(0, 26);
-            char uppercaseLetter = (char)('A' + uppercaseIndex);
-            int lowercaseIndex = random.Next(0, 26);
-            char lowercaseLetter = (char)('a' + lowercaseIndex);
-            return random.Next(0, 2) == 0 ? uppercaseLetter.ToString() : lowercaseLetter.ToString();
+            return ((char)('A' + random.Next(0, 26))).ToString();
         }
 
         void ShowCaptcha() {
@@ -67,8 +63,9 @@ namespace Shoe41
             }
 
             if (NeedCaptcha) {
-                string a = CaptchaTB.Text;
-                string b = captchaOneWord.Text + captchaTwoWord.Text + captchaThreeWord.Text + captchaFourWord.Text;
+                string a = CaptchaTB.Text.ToUpper();
+                string b = (captchaOneWord.Text + captchaTwoWord.Text + captchaThreeWord.Text + captchaFourWord.Text).ToUpper();
+                CaptchaTB.Text = "";
                 if (a != b) {
                     LastLoginTry = dt;
                     MessageBox.Show("Неверная капча");
