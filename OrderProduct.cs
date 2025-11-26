@@ -18,6 +18,7 @@ namespace Shoe41
         public string ProductArticleNumber { get; set; }
         public int OrderProductCount { get; set; }
     
+        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

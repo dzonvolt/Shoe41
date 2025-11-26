@@ -18,6 +18,7 @@ namespace Shoe41
 
         static Chirkov41Entities instance = null;
 
+
         public Chirkov41Entities()
             : base("name=Chirkov41Entities")
         {
@@ -38,7 +39,6 @@ namespace Shoe41
         public virtual DbSet<PickUpPoint> PickUpPoint { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

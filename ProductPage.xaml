@@ -24,6 +24,7 @@
         </Grid.RowDefinitions>
         
         <TextBlock Name="UserInfoTB" FontSize="15" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <Button Name="OrderBtn" Content="Просмотр заказа" Grid.Column="4" Grid.Row="0" Visibility="Hidden" Click="OrderBtn_Click"/>
 
         <TextBlock Name="SearchResultTB" Text="" Grid.Column="0" Grid.Row="1" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
@@ -39,6 +40,11 @@
         <ComboBox Name="DiscountCB" Width="120" Height="20" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="DiscountCB_SelectionChanged"/>
 
         <ListView Name="ProductListView" Grid.ColumnSpan="5" Grid.Row="3">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить к заказу" Click="MenuItem_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

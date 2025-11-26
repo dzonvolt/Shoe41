@@ -25,6 +25,14 @@ namespace Shoe41
         public string PickUpPointCity { get; set; }
         public string PickUpPointStreet { get; set; }
         public string PickUpPointHouse { get; set; }
+
+
+        public string Address
+        {
+            get {
+                return PickUpPointCity + " " + PickUpPointStreet + " " + PickUpPointHouse;
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

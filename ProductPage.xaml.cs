@@ -20,9 +20,13 @@ namespace Shoe41
     /// </summary>
     public partial class ProductPage : Page
     {
+        User CurrentUser = null;
         public static List<Product> CurrentProducts = new List<Product>();
-
+        int NewOrderID = 0;
+        List<Product> selectedProducts = new List<Product>();
+        List<OrderProduct> selectedOrderProducts = new List<OrderProduct>();
         List<string> discount_filters = new List<string>{ "0-9%", "10-14%", "15-100%"};
+        
 
         public ProductPage(User user)
         {
@@ -30,9 +34,11 @@ namespace Shoe41
             CurrentProducts = Chirkov41Entities.GetContext().Product.ToList();
             ProductListView.ItemsSource = CurrentProducts;
             DiscountCB.ItemsSource = discount_filters;
-            if (user != null) UserInfoTB.Text = "Вошлши как " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic + "\n" + "Роль: " + user.Role.RoleName;
+            if (user != null) UserInfoTB.Text = "Вошлши как " + user.FullName + "\n" + "Роль: " + user.Role.RoleName;
             else UserInfoTB.Text = "Вошли как гость";
+            this.CurrentUser = user;
                 UpdateProducts();
+            NewOrderID = Chirkov41Entities.GetContext().Order.ToList().LastOrDefault().OrderID + 1;
         }
 
         public void UpdateProducts() {
@@ -41,7 +47,7 @@ namespace Shoe41
             var raw_products_count = products.Count;
 
             if(SearchTB.Text.Length > 0)
-            products = products.Where(p => p.ProductName.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
+                products = products.Where(p => p.ProductName.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
 
             if (AscRB.IsChecked.Value)
                 products = products.OrderBy(p => p.ProductCost).ToList();
@@ -84,6 +90,42 @@ namespace Shoe41
         private void DescRB_Checked(object sender, RoutedEventArgs e)
         {
             UpdateProducts();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductListView.SelectedIndex < 0) return;
+            var prod = ProductListView.SelectedItem as Product;
+            selectedProducts.Add(prod);
+
+            var newOrderProd = new OrderProduct();
+            newOrderProd.OrderID = NewOrderID;
+            newOrderProd.ProductArticleNumber = prod.ProductArticleNumber;
+            newOrderProd.OrderProductCount = 1;
+
+            //var selOP = selectedProducts.Where(p => Equals(p.ProductArticleNumber, prod.ProductArticleNumber));
+            if (selectedOrderProducts.Find(p => p.ProductArticleNumber == prod.ProductArticleNumber) == null)
+            {
+                selectedOrderProducts.Add(newOrderProd);
+            }
+            else
+            {
+                foreach(var p in selectedOrderProducts)
+                {
+                    if (p.ProductArticleNumber == prod.ProductArticleNumber)
+                        p.OrderProductCount++;
+                }
+            }
+
+            OrderBtn.Visibility = Visibility.Visible;
+            ProductListView.SelectedIndex = -1;
+        }
+
+        private void OrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedProducts = selectedProducts.Distinct().ToList();
+            var orderWindow = new OrderWindow(selectedOrderProducts, selectedProducts, CurrentUser != null ? CurrentUser.UserLogin : "гость");
+            orderWindow.ShowDialog();
         }
     }
 }
