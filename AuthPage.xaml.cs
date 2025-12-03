@@ -23,7 +23,6 @@ namespace Shoe41
         public AuthPage()
         {
             InitializeComponent();
-            //ShowCaptcha();
         }
 
         private void LoginGuestButton_Click(object sender, RoutedEventArgs e)

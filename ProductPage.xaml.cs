@@ -124,7 +124,7 @@ namespace Shoe41
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedProducts = selectedProducts.Distinct().ToList();
-            var orderWindow = new OrderWindow(selectedOrderProducts, selectedProducts, CurrentUser != null ? CurrentUser.UserLogin : "гость");
+            var orderWindow = new OrderWindow(selectedOrderProducts, selectedProducts, CurrentUser);
             orderWindow.ShowDialog();
         }
     }

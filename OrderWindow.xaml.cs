@@ -24,16 +24,16 @@ namespace Shoe41
         private Order currentOrder = new Order();
         private OrderProduct currentOrderProduct = new OrderProduct();
 
-        public OrderWindow(List<OrderProduct> selectedOrderProducts, List<Product> selectedProducts, string clientName)
+        public OrderWindow(List<OrderProduct> selectedOrderProducts, List<Product> selectedProducts, User client)
         {
             InitializeComponent();
             var currentPickups = Chirkov41Entities.GetContext().PickUpPoint.ToList();
             PickUpPointCB.ItemsSource = currentPickups;
 
-            ClientNameTB.Text = clientName;
+            ClientNameTB.Text = client != null ? client.FullName : "гость";
             OrderIdTB.Text = selectedOrderProducts.First().OrderID.ToString();
 
-            ShoeListView.ItemsSource = selectedProducts;
+            
             foreach (var p in selectedProducts) {
                 p.Quantity = 1;
                 foreach (var q in selectedOrderProducts) {
@@ -41,6 +41,8 @@ namespace Shoe41
                         p.Quantity = q.OrderProductCount;
                 }
             }
+            
+            ShoeListView.ItemsSource = selectedProducts;
 
             this.selectedOrderProducts = selectedOrderProducts;
             this.selectedProducts = selectedProducts;
@@ -50,6 +52,7 @@ namespace Shoe41
                 if (product.ProductQuantityInStock <= 3) allInStock = false;
             }
 
+            currentOrder.OrderClientID = client?.UserID;
             currentOrder.OrderID = Chirkov41Entities.GetContext().Order.ToList().Last().OrderID + 1;
             currentOrder.OrderCode = Chirkov41Entities.GetContext().Order.ToList().Last().OrderCode + 1;
             currentOrder.OrderStatus = "Новый";
@@ -67,16 +70,18 @@ namespace Shoe41
 
             var selectedOP = selectedOrderProducts.FirstOrDefault(p => p.ProductArticleNumber == prod.ProductArticleNumber);
             selectedOP.OrderProductCount++;
+            ShoeListView.ItemsSource = selectedProducts.ToList();
         }
 
         private void MinusBtn_Click(object sender, RoutedEventArgs e)
         {
             var prod = (sender as Button).DataContext as Product;
-            if (prod.Quantity <= 0) return;
+            if (prod.Quantity <= 1) return;
             prod.Quantity--;
 
             var selectedOP = selectedOrderProducts.FirstOrDefault(p => p.ProductArticleNumber == prod.ProductArticleNumber);
             selectedOP.OrderProductCount++;
+            ShoeListView.ItemsSource = selectedProducts.ToList();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -101,6 +106,7 @@ namespace Shoe41
                 return;
             }
 
+            this.Close();
             MessageBox.Show("Заказ успешно создан");
         }
     }
